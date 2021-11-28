@@ -36,12 +36,11 @@ function getNLUInstance() {
 //The default endpoint for the webserver
 app.get("/",(req,res)=>{
     res.render('index.html');
-    console.log("in default");
+   
   });
 
 //The endpoint for the webserver ending with /url/emotion
 app.get("/url/emotion", (req,res) => {
-    console.log("in url emotion");
     let urlToAnalyze = req.query.url
     const analyzeParams = 
     {
@@ -68,7 +67,7 @@ app.get("/url/emotion", (req,res) => {
 
 //The endpoint for the webserver ending with /url/sentiment
 app.get("/url/sentiment", (req,res) => {
-    console.log("in url sentiment");
+   
     let urlToAnalyze = req.query.url
     const analyzeParams = 
     {
@@ -96,9 +95,9 @@ app.get("/url/sentiment", (req,res) => {
 
 //The endpoint for the webserver ending with /text/emotion
 app.get("/text/emotion", (req,res) => {
-    console.log("in text emotion");
+    
     let textToAnalyze = req.query.text
-    console.log(req.query.text);
+    
     const analyzeParams = 
     {
         "text": textToAnalyze,
@@ -115,8 +114,7 @@ app.get("/text/emotion", (req,res) => {
     naturalLanguageUnderstanding.analyze(analyzeParams)
     .then(analysisResults => {
         //Retrieve the emotion and return it as a formatted string
-        console.log("here are the results");
-        console.log(analysisResults);
+       
 
         return res.send(analysisResults.result.keywords[0].emotion,null,2);
     })
@@ -126,7 +124,7 @@ app.get("/text/emotion", (req,res) => {
 });
 
 app.get("/text/sentiment", (req,res) => {
-    console.log("in text sentiment");
+   
     let textToAnalyze = req.query.text
     const analyzeParams = 
     {
